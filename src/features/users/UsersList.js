@@ -9,7 +9,7 @@ const UsersList = () => {
         isSuccess,
         isError,
         error
-    } = useGetUsersQuery(undefined, {
+    } = useGetUsersQuery('userList', {
         pollingInterval: 60000,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
@@ -27,9 +27,11 @@ const UsersList = () => {
 
         const { ids } = users
 
-        const tableContent = ids?.length
-            ? ids.map(userId => <User key={userId} userId={userId} />)
-            : null
+        const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
+
+        // const tableContent = ids?.length
+        //     ? ids.map(userId => <User key={userId} userId={userId} />)
+        //     : null
 
         content = (
             <table className="table table--users">
